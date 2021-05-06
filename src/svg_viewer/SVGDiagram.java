@@ -276,7 +276,6 @@ public class SVGDiagram extends JComponent {
             }
         }
 
-        
         // CONTORNO
         
         // Grosor de línea
@@ -320,7 +319,13 @@ public class SVGDiagram extends JComponent {
 
         int size = 0;
         if (text.hasAttribute("font-size")) {
-            size = Integer.parseInt(text.getAttribute("font-size"));      
+            String fontSize = text.getAttribute("font-size");
+            
+            if (fontSize.contains("x")) {
+                size = Integer.parseInt(fontSize.substring(0, fontSize.length()-2));
+            } else {
+                size = Integer.parseInt(text.getAttribute("font-size")); 
+            }
         }
         
         String fontFamily = null;
